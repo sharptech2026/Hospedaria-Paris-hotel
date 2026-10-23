@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paris Hotel · Luanda</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>tailwind.config={theme:{extend:{colors:{navy:'#0B1F3A',gold:'#C9A24B'},fontFamily:{serif:['Playfair Display','serif'],sans:['Inter','sans-serif']}}}}</script>
+<style>
+html{scroll-behavior:smooth}img{background:#dfe5ee}
+.btn-gold{background:linear-gradient(135deg,#D8B45E,#B98F34);color:#0B1F3A;font-weight:600;transition:.2s}.btn-gold:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.fade{animation:f .3s ease}@keyframes f{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+</style>
+</head>
+<body class="font-sans text-slate-700 bg-white">
+
+<!-- ================= SITE ================= -->
+<div id="site">
+<header class="fixed top-0 inset-x-0 z-40 bg-white/95 backdrop-blur border-b border-slate-100">
+ <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+  <a href="#top" class="flex items-center gap-2"><span class="w-9 h-9 rounded-lg bg-navy grid place-items-center"><i data-lucide="crown" class="w-5 h-5 text-gold"></i></span><span class="font-serif text-xl text-navy font-bold">PARIS <span class="text-gold">HOTEL</span></span></a>
+  <nav class="hidden lg:flex gap-7 text-sm font-medium">
+   <a href="#quartos" class="hover:text-gold">Quartos</a><a href="#comodidades" class="hover:text-gold">Comodidades</a><a href="#galeria" class="hover:text-gold">Galeria</a><a href="#avaliacoes" class="hover:text-gold">Avaliações</a><a href="#local" class="hover:text-gold">Localização</a>
+  </nav>
+  <div class="flex items-center gap-2">
+   <button onclick="openAdmin()" class="hidden sm:flex items-center gap-1 text-sm font-medium text-navy border border-navy/20 rounded-lg px-3 py-2 hover:bg-navy hover:text-white transition"><i data-lucide="lock" class="w-4 h-4"></i>Entrar no Sistema</button>
+   <button onclick="openBooking()" class="btn-gold rounded-lg px-4 py-2 text-sm">Reservar Agora</button>
+  </div>
+ </div>
+</header>
+
+<section id="top" class="relative min-h-[620px] flex items-center pt-16" style="background:linear-gradient(rgba(11,31,58,.72),rgba(11,31,58,.55)),url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1800&q=80') center/cover,#0B1F3A">
+ <div class="max-w-7xl mx-auto px-4 py-20 w-full">
+  <p class="text-gold tracking-[.3em] text-xs font-semibold mb-3">LUANDA · ANGOLA</p>
+  <h1 class="font-serif text-4xl md:text-6xl text-white font-bold max-w-2xl leading-tight">O seu refúgio de elegância no coração de Luanda</h1>
+  <p class="text-slate-200 mt-4 max-w-xl">Conforto, segurança e hospitalidade angolana com padrão internacional. Reserve em segundos.</p>
+  <div class="mt-10 bg-white rounded-2xl shadow-2xl p-3 grid md:grid-cols-4 gap-3 max-w-4xl">
+   <label class="px-3 py-1"><span class="text-xs text-slate-500 flex items-center gap-1"><i data-lucide="calendar" class="w-3 h-3"></i>Check-in</span><input id="s-in" type="date" class="w-full font-medium text-navy outline-none"></label>
+   <label class="px-3 py-1 md:border-l"><span class="text-xs text-slate-500 flex items-center gap-1"><i data-lucide="calendar-check" class="w-3 h-3"></i>Check-out</span><input id="s-out" type="date" class="w-full font-medium text-navy outline-none"></label>
+   <label class="px-3 py-1 md:border-l"><span class="text-xs text-slate-500 flex items-center gap-1"><i data-lucide="users" class="w-3 h-3"></i>Hóspedes</span><select id="s-g" class="w-full font-medium text-navy outline-none bg-white"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></label>
+   <button onclick="document.getElementById('quartos').scrollIntoView()" class="btn-gold rounded-xl py-3">Ver Quartos</button>
+  </div>
+  <div class="flex flex-wrap gap-6 mt-8 text-white/90 text-sm"><span class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-gold"></i>Segurança 24h</span><span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-gold"></i>Gerador próprio</span><span class="flex items-center gap-2"><i data-lucide="wifi" class="w-4 h-4 text-gold"></i>Wi-Fi rápido</span></div>
+ </div>
+</section>
+
+<section id="quartos" class="py-20 bg-slate-50"><div class="max-w-7xl mx-auto px-4">
+ <div class="text-center mb-12"><p class="text-gold tracking-[.25em] text-xs font-semibold">ACOMODAÇÃO</p><h2 class="font-serif text-3xl md:text-4xl text-navy font-bold mt-2">Nossos Quartos</h2></div>
+ <div id="rooms" class="grid md:grid-cols-3 gap-7"></div>
+</div></section>
+
+<section id="comodidades" class="py-20"><div class="max-w-7xl mx-auto px-4">
+ <div class="text-center mb-12"><p class="text-gold tracking-[.25em] text-xs font-semibold">SERVIÇOS</p><h2 class="font-serif text-3xl md:text-4xl text-navy font-bold mt-2">Comodidades</h2></div>
+ <div class="grid grid-cols-2 md:grid-cols-4 gap-5" id="amen"></div>
+</div></section>
+
+<section id="galeria" class="py-20 bg-slate-50"><div class="max-w-7xl mx-auto px-4">
+ <div class="text-center mb-12"><p class="text-gold tracking-[.25em] text-xs font-semibold">ESPAÇOS</p><h2 class="font-serif text-3xl md:text-4xl text-navy font-bold mt-2">Galeria</h2></div>
+ <div id="gal" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+</div></section>
+
+<section id="avaliacoes" class="py-20"><div class="max-w-7xl mx-auto px-4">
+ <div class="text-center mb-12"><p class="text-gold tracking-[.25em] text-xs font-semibold">TESTEMUNHOS</p><h2 class="font-serif text-3xl md:text-4xl text-navy font-bold mt-2">O que dizem os hóspedes</h2><p class="mt-2 text-sm">⭐ 4.9 / 5 · 312 avaliações</p></div>
+ <div id="rev" class="grid md:grid-cols-3 gap-6"></div>
+</div></section>
+
+<section id="local" class="py-20 bg-slate-50"><div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+ <div><p class="text-gold tracking-[.25em] text-xs font-semibold">COMO CHEGAR</p><h2 class="font-serif text-3xl md:text-4xl text-navy font-bold mt-2">Localização</h2>
+  <p class="mt-4">Em plena zona central de Luanda, a poucos minutos da Marginal, restaurantes e do Aeroporto 4 de Fevereiro.</p>
+  <ul class="mt-6 space-y-3 text-sm"><li class="flex gap-3"><i data-lucide="map-pin" class="w-5 h-5 text-gold"></i>Rua Rainha Ginga, Ingombota, Luanda</li><li class="flex gap-3"><i data-lucide="plane" class="w-5 h-5 text-gold"></i>15 min do Aeroporto Internacional</li><li class="flex gap-3"><i data-lucide="waves" class="w-5 h-5 text-gold"></i>5 min da Marginal de Luanda</li></ul></div>
+ <iframe class="w-full h-80 rounded-2xl shadow-lg border-0" loading="lazy" src="https://maps.google.com/maps?q=Ingombota,Luanda,Angola&z=14&output=embed"></iframe>
+</div></section>
+
+<footer class="bg-navy text-slate-300 pt-14 pb-6"><div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-10">
+ <div><span class="font-serif text-2xl text-white font-bold">PARIS <span class="text-gold">HOTEL</span></span><p class="mt-3 text-sm">Mini-hotel e hospedaria em Luanda. Conforto e hospitalidade desde 2016.</p></div>
+ <div class="text-sm space-y-2"><h4 class="text-white font-semibold mb-3">Contactos</h4><p class="flex gap-2"><i data-lucide="phone" class="w-4 h-4 text-gold"></i>+244 923 456 789</p><p class="flex gap-2"><i data-lucide="mail" class="w-4 h-4 text-gold"></i>reservas@parishotel.ao</p><p class="flex gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-gold"></i>Rua Rainha Ginga, Luanda</p></div>
+ <div class="text-sm"><h4 class="text-white font-semibold mb-3">Horários</h4><p>Check-in: 14:00</p><p>Check-out: 12:00</p><p>Recepção: 24 horas</p><button onclick="openAdmin()" class="mt-4 text-gold underline">Entrar no Sistema</button></div>
+</div><p class="text-center text-xs text-slate-500 mt-10 border-t border-white/10 pt-5">© 2026 Paris Hotel. Todos os direitos reservados.</p></footer>
+</div>
+
+<!-- ================= MODAL RESERVA ================= -->
+<div id="modal" class="hidden fixed inset-0 z-50 bg-navy/70 backdrop-blur-sm p-4 overflow-y-auto" onclick="if(event.target===this)closeBooking()">
+ <div class="bg-white rounded-2xl max-w-lg mx-auto my-6 shadow-2xl fade">
+  <div class="flex items-center justify-between p-5 border-b"><h3 class="font-serif text-xl text-navy font-bold" id="m-title">Reservar quarto</h3><button onclick="closeBooking()"><i data-lucide="x" class="w-5 h-5"></i></button></div>
+  <div id="m-body" class="p-5"></div>
+ </div>
+</div>
+
+<!-- ================= ADMIN ================= -->
+<div id="admin" class="hidden min-h-screen bg-slate-100 text-slate-700">
+ <aside id="side" class="fixed inset-y-0 left-0 w-64 bg-navy text-slate-300 z-30 -translate-x-full lg:translate-x-0 transition">
+  <div class="h-16 flex items-center gap-2 px-5 border-b border-white/10"><i data-lucide="crown" class="w-6 h-6 text-gold"></i><span class="font-serif text-lg text-white font-bold">PARIS HOTEL</span></div>
+  <nav id="nav" class="p-3 space-y-1"></nav>
+  <button onclick="closeAdmin()" class="absolute bottom-5 left-5 flex items-center gap-2 text-sm hover:text-white"><i data-lucide="log-out" class="w-4 h-4"></i>Sair do sistema</button>
+ </aside>
+ <div class="lg:ml-64">
+  <div class="h-16 bg-white border-b flex items-center justify-between px-4 sticky top-0 z-20">
+   <div class="flex items-center gap-3"><button class="lg:hidden" onclick="document.getElementById('side').classList.toggle('-translate-x-full')"><i data-lucide="menu" class="w-6 h-6"></i></button><h2 id="a-title" class="font-semibold text-navy text-lg"></h2></div>
+   <div class="flex items-center gap-3"><span class="hidden sm:block text-xs text-slate-500" id="a-date"></span><div class="flex items-center gap-2"><span class="w-9 h-9 rounded-full bg-gold text-navy font-bold grid place-items-center text-sm">AM</span><div class="hidden sm:block leading-tight"><p class="text-sm font-semibold text-navy">António Mendes</p><p class="text-xs text-slate-500">Proprietário</p></div></div></div>
+  </div>
+  <main id="a-main" class="p-4 md:p-6"></main>
+ </div>
+</div>
+<div id="toast" class="hidden fixed bottom-5 right-5 z-[60] bg-navy text-white px-4 py-3 rounded-xl shadow-xl text-sm"></div>
+
+<script>
+const kz=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' Kz';
+const $=s=>document.querySelector(s);
+const fmt=d=>{const[a,b,c]=d.split('-');return `${c}/${b}/${a}`};
+const iso=(add=0)=>{const d=new Date();d.setDate(d.getDate()+add);return d.toISOString().slice(0,10)};
+const IMG=id=>`https://images.unsplash.com/photo-${id}?w=800&q=75`;
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),2600)};
+const icons=()=>lucide.createIcons();
+
+/* ---------- DADOS ---------- */
+const TYPES=[
+ {id:'std',name:'Standard',price:15000,img:'1631049307264-da0ec9d70304',desc:'Cama de casal, TV, casa de banho privativa.',am:['wifi','snowflake','tv'],g:2},
+ {id:'sui',name:'Suite',price:25000,img:'1618773928121-c32242e63f39',desc:'Quarto amplo com sala de estar e varanda.',am:['wifi','snowflake','coffee','tv'],g:3},
+ {id:'fam',name:'Suite Familiar',price:35000,img:'1582719478250-c89cae4dc85b',desc:'Dois quartos, cozinha pequena, ideal para famílias.',am:['wifi','snowflake','coffee','baby'],g:5}];
+const AM=[['wifi','Wi-Fi Grátis','Internet de alta velocidade'],['snowflake','Ar Condicionado','Em todos os quartos'],['coffee','Pequeno Almoço','Incluído na diária'],['car','Estacionamento','Seguro e vigiado 24h']];
+const GAL=['1566073771259-6a8506099945','1631049307264-da0ec9d70304','1618773928121-c32242e63f39','1582719478250-c89cae4dc85b','1590490360182-c33d57733427','1578683010236-d716f9a3f461','1551882547-ff40c63fe5fa','1564501049412-61c2a3083791'];
+const REV=[['Joana Pedro','Empresária · Benguela','Quarto limpo, staff simpático e Wi-Fi que funciona mesmo. Voltarei sempre que vier a Luanda.'],['Eng. Manuel Cabinda','Consultor · Huambo','Gerador e água quente garantidos. Excelente custo-benefício para viagens de trabalho.'],['Sandra Quissanga','Turista · Lubango','A Suite Familiar foi perfeita para nós e as crianças. Pequeno almoço delicioso!']];
+let rooms=[];[101,102,103,104,105,106,201,202,203,204,301,302].forEach((n,i)=>rooms.push({n,t:TYPES[n<200?0:n<300?1:2],s:['Ocupado','Livre','Ocupado','Limpeza','Livre','Ocupado','Ocupado','Livre','Limpeza','Ocupado','Ocupado','Livre'][i]}));
+let B=[
+['Joaquim Manuel Domingos','Suite',1,'Confirmada','923 411 872'],['Ana Paula Kiala','Standard',0,'Confirmada','934 120 556'],['Carlos Mateus Neto','Suite Familiar',2,'Pendente','912 887 304'],
+['Isabel Fernandes Cardoso','Standard',1,'Confirmada','945 301 778'],['Domingos Ngola','Suite',3,'Pendente','926 650 193'],['Teresa Bumba','Suite Familiar',0,'Confirmada','937 214 640'],
+['Miguel Sebastião','Standard',4,'Confirmada','921 778 095'],['Luzia Tchissola','Suite',5,'Pendente','948 502 361'],['Eduardo Kapapelo','Standard',-1,'Confirmada','935 997 218'],['Marta Quibeta','Suite',-2,'Confirmada','927 463 850']
+].map((r,i)=>{const t=TYPES.find(x=>x.name===r[1]);return{id:'PH-'+(1040+i),name:r[0],room:r[1],date:iso(r[2]),status:r[3],phone:r[4],amount:t.price*(1+i%3)}});
+const OCC=[62,70,58,75,82,88,91,73,66,79,85,93,87,80];
+const BASE_REV=1842000, BASE_RES=96;
+
+/* ---------- SITE ---------- */
+$('#s-in').value=iso(1);$('#s-out').value=iso(3);
+$('#rooms').innerHTML=TYPES.map(t=>`<article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group">
+ <div class="relative h-56 overflow-hidden"><img src="${IMG(t.img)}" alt="${t.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"><span class="absolute top-3 left-3 bg-navy/90 text-gold text-xs px-3 py-1 rounded-full">Até ${t.g} hóspedes</span></div>
+ <div class="p-5"><div class="flex justify-between items-start"><h3 class="font-serif text-xl text-navy font-bold">${t.name}</h3><div class="text-right"><p class="text-gold font-bold text-lg leading-none">${kz(t.price)}</p><p class="text-[11px] text-slate-500">por noite</p></div></div>
+ <p class="text-sm mt-2 text-slate-500">${t.desc}</p>
+ <div class="flex gap-3 mt-4 text-navy">${t.am.map(a=>`<i data-lucide="${a}" class="w-5 h-5"></i>`).join('')}</div>
+ <button onclick="openBooking('${t.id}')" class="btn-gold w-full rounded-xl py-3 mt-5">Reservar</button></div></article>`).join('');
+$('#amen').innerHTML=AM.map(a=>`<div class="text-center p-6 rounded-2xl border border-slate-100 hover:border-gold hover:shadow-lg transition"><span class="w-14 h-14 mx-auto rounded-full bg-navy grid place-items-center"><i data-lucide="${a[0]}" class="w-6 h-6 text-gold"></i></span><h4 class="font-semibold text-navy mt-4">${a[1]}</h4><p class="text-sm text-slate-500 mt-1">${a[2]}</p></div>`).join('');
+$('#gal').innerHTML=GAL.map((g,i)=>`<img src="${IMG(g)}" loading="lazy" class="w-full object-cover rounded-xl hover:opacity-90 transition ${i%5==0?'h-64 md:row-span-2 md:h-full':'h-40 md:h-52'}">`).join('');
+$('#rev').innerHTML=REV.map(r=>`<div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm"><div class="flex text-gold mb-3">${'<i data-lucide="star" class="w-4 h-4 fill-current"></i>'.repeat(5)}</div><p class="text-sm italic">“${r[2]}”</p><div class="flex items-center gap-3 mt-5"><span class="w-10 h-10 rounded-full bg-navy text-gold font-bold grid place-items-center">${r[0][0]}</span><div><p class="font-semibold text-navy text-sm">${r[0]}</p><p class="text-xs text-slate-500">${r[1]}</p></div></div></div>`).join('');
+
+/* ---------- MODAL RESERVA ---------- */
+let cur={};
+function openBooking(id){
+ cur={type:id||'std',in:$('#s-in').value,out:$('#s-out').value,g:$('#s-g').value};
+ step1();$('#modal').classList.remove('hidden');document.body.style.overflow='hidden';
+}
+function closeBooking(){$('#modal').classList.add('hidden');document.body.style.overflow=''}
+const nights=()=>Math.max(1,Math.round((new Date(cur.out)-new Date(cur.in))/864e5));
+const total=()=>TYPES.find(t=>t.id===cur.type).price*nights();
+const inp='w-full border border-slate-200 rounded-lg px-3 py-2.5 text-sm focus:border-gold focus:outline-none';
+function step1(){
+ $('#m-title').textContent='Dados da reserva';
+ $('#m-body').innerHTML=`<div class="grid gap-3">
+ <input id="f-name" class="${inp}" placeholder="Nome completo" value="${cur.name||''}">
+ <div class="grid grid-cols-2 gap-3"><input id="f-tel" class="${inp}" placeholder="Telemóvel (9XX XXX XXX)" value="${cur.tel||''}"><input id="f-mail" type="email" class="${inp}" placeholder="E-mail" value="${cur.mail||''}"></div>
+ <select id="f-room" class="${inp} bg-white" onchange="cur.type=this.value;upd()">${TYPES.map(t=>`<option value="${t.id}" ${t.id===cur.type?'selected':''}>${t.name} — ${kz(t.price)}/noite</option>`).join('')}</select>
+ <div class="grid grid-cols-3 gap-3"><label class="text-xs text-slate-500">Check-in<input id="f-in" type="date" class="${inp}" value="${cur.in}" onchange="cur.in=this.value;upd()"></label><label class="text-xs text-slate-500">Check-out<input id="f-out" type="date" class="${inp}" value="${cur.out}" onchange="cur.out=this.value;upd()"></label><label class="text-xs text-slate-500">Hóspedes<input id="f-g" type="number" min="1" max="6" class="${inp}" value="${cur.g}"></label></div>
+ <div class="bg-slate-50 rounded-xl p-4 flex justify-between items-center"><span class="text-sm" id="f-sum"></span><b class="text-navy text-lg" id="f-tot"></b></div>
+ <p id="f-err" class="text-red-600 text-xs hidden"></p>
+ <button onclick="toPay()" class="btn-gold rounded-xl py-3">Continuar para pagamento</button></div>`;upd();icons();
+}
+function upd(){$('#f-sum').textContent=`${nights()} noite(s) · ${TYPES.find(t=>t.id===cur.type).name}`;$('#f-tot').textContent=kz(total())}
+function toPay(){
+ const n=$('#f-name').value.trim(),t=$('#f-tel').value.trim(),e=$('#f-err');
+ if(n.length<3||t.replace(/\D/g,'').length<9||new Date(cur.out)<=new Date(cur.in)){e.textContent='Preencha o nome, um telemóvel válido e datas correctas.';e.classList.remove('hidden');return}
+ Object.assign(cur,{name:n,tel:t,mail:$('#f-mail').value,g:$('#f-g').value,pay:'mc'});
+ $('#m-title').textContent='Pagamento';
+ const opts=[['mc','smartphone','Multicaixa Express'],['ref','landmark','Referência Multicaixa'],['card','credit-card','Cartão Visa / Mastercard']];
+ $('#m-body').innerHTML=`<p class="text-sm mb-3">Total a pagar: <b class="text-navy text-xl">${kz(total())}</b></p>
+ <div class="grid gap-2" id="opts">${opts.map(o=>`<label class="flex items-center gap-3 border rounded-xl p-3 cursor-pointer has-[:checked]:border-gold has-[:checked]:bg-amber-50"><input type="radio" name="pay" value="${o[0]}" ${o[0]==='mc'?'checked':''} onchange="cur.pay=this.value"><i data-lucide="${o[1]}" class="w-5 h-5 text-navy"></i><span class="text-sm font-medium">${o[2]}</span></label>`).join('')}</div>
+ <p class="text-xs text-slate-500 mt-3 flex gap-1"><i data-lucide="lock" class="w-3 h-3 mt-0.5"></i>Pagamento simulado para demonstração. Nenhum valor será cobrado.</p>
+ <div class="flex gap-3 mt-5"><button onclick="step1()" class="border rounded-xl px-5 py-3 text-sm">Voltar</button><button onclick="pay()" class="btn-gold rounded-xl py-3 flex-1">Pagar ${kz(total())}</button></div>`;icons();
+}
+function pay(){
+ $('#m-body').innerHTML=`<div class="text-center py-10"><div class="w-12 h-12 border-4 border-gold border-t-transparent rounded-full animate-spin mx-auto"></div><p class="mt-5 font-medium text-navy">A processar pagamento…</p></div>`;
+ setTimeout(()=>{
+  const t=TYPES.find(x=>x.id===cur.type),id='PH-'+(1040+B.length);
+  B.unshift({id,name:cur.name,room:t.name,date:cur.in,status:cur.pay==='ref'?'Pendente':'Confirmada',phone:cur.tel,amount:total()});
+  $('#m-title').textContent='Reserva concluída';
+  $('#m-body').innerHTML=`<div class="text-center py-4"><span class="w-16 h-16 rounded-full bg-emerald-100 grid place-items-center mx-auto"><i data-lucide="check" class="w-8 h-8 text-emerald-600"></i></span>
+  <h4 class="font-serif text-2xl text-navy font-bold mt-4">Obrigado, ${cur.name.split(' ')[0]}!</h4>
+  <p class="text-sm mt-2">${cur.pay==='ref'?'Reserva registada. Pague a referência em 24h para confirmar.':'Pagamento recebido e reserva confirmada.'}</p>
+  <div class="bg-slate-50 rounded-xl p-4 mt-5 text-sm text-left space-y-1"><p><b>Código:</b> ${id}</p><p><b>Quarto:</b> ${t.name}</p><p><b>Datas:</b> ${fmt(cur.in)} → ${fmt(cur.out)}</p><p><b>Total:</b> ${kz(total())}</p></div>
+  <button onclick="closeBooking()" class="btn-gold rounded-xl py-3 w-full mt-5">Fechar</button></div>`;icons();
+ },1800);
+}
+
+/* ---------- ADMIN ---------- */
+const NAV=[['dash','layout-dashboard','Dashboard'],['res','calendar-check','Reservas'],['qts','bed-double','Quartos'],['cli','users','Clientes'],['fin','wallet','Financeiro']];
+let view='dash';
+function openAdmin(){$('#site').classList.add('hidden');$('#admin').classList.remove('hidden');scrollTo(0,0);go('dash')}
+function closeAdmin(){$('#admin').classList.add('hidden');$('#site').classList.remove('hidden')}
+function go(v){view=v;$('#side').classList.add('-translate-x-full');
+ $('#nav').innerHTML=NAV.map(n=>`<button onclick="go('${n[0]}')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition ${n[0]===v?'bg-gold text-navy font-semibold':'hover:bg-white/10'}"><i data-lucide="${n[1]}" class="w-5 h-5"></i>${n[2]}</button>`).join('');
+ $('#a-title').textContent=NAV.find(n=>n[0]===v)[2];
+ $('#a-date').textContent=new Date().toLocaleDateString('pt-PT',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+ $('#a-main').innerHTML=`<div class="fade">${V[v]()}</div>`;icons();
+}
+const badge=s=>({Confirmada:'bg-emerald-100 text-emerald-700',Pendente:'bg-amber-100 text-amber-700',Livre:'bg-emerald-100 text-emerald-700',Ocupado:'bg-rose-100 text-rose-700',Limpeza:'bg-sky-100 text-sky-700'})[s];
+const pill=s=>`<span class="px-2.5 py-1 rounded-full text-xs font-semibold ${badge(s)}">${s}</span>`;
+const card=(i,l,v,c)=>`<div class="bg-white rounded-2xl p-5 shadow-sm flex items-center gap-4"><span class="w-12 h-12 rounded-xl grid place-items-center ${c}"><i data-lucide="${i}" class="w-6 h-6"></i></span><div><p class="text-xs text-slate-500">${l}</p><p class="text-xl font-bold text-navy">${v}</p></div></div>`;
+const table=(h,rows)=>`<div class="bg-white rounded-2xl shadow-sm overflow-x-auto"><table class="w-full text-sm min-w-[560px]"><thead class="text-xs text-slate-500 uppercase bg-slate-50"><tr>${h.map(x=>`<th class="text-left px-5 py-3 font-medium">${x}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr class="border-t border-slate-100 hover:bg-slate-50">${r.map((c,i)=>`<td class="px-5 py-3 ${i==0?'font-medium text-navy':''}">${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+const resRows=l=>l.map(b=>[b.name,b.room,fmt(b.date),pill(b.status)]);
+const occNow=()=>rooms.filter(r=>r.s==='Ocupado').length;
+const revenue=()=>BASE_REV+B.slice(0,B.length-10).reduce((a,b)=>a+b.amount,0);
+const custs=()=>{const m={};B.forEach(b=>{(m[b.name]=m[b.name]||{n:b.name,p:b.phone,c:0,t:0,l:b.date});m[b.name].c++;m[b.name].t+=b.amount});return Object.values(m)};
+const V={
+ dash:()=>`<div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
+  ${card('calendar-check','Reservas do Mês',BASE_RES+B.length-10,'bg-blue-100 text-blue-700')}
+  ${card('bed-double','Ocupados Hoje',occNow()+' / '+rooms.length,'bg-rose-100 text-rose-700')}
+  ${card('banknote','Faturação do Mês',kz(revenue()),'bg-amber-100 text-amber-700')}
+  ${card('log-in','Próximos Check-ins',B.filter(b=>b.date>=iso()).length,'bg-emerald-100 text-emerald-700')}</div>
+  <div class="grid xl:grid-cols-3 gap-4 mt-4"><div class="xl:col-span-2"><h3 class="font-semibold text-navy mb-3">Reservas recentes</h3>${table(['Hóspede','Quarto','Data','Status'],resRows(B.slice(0,6)))}</div>
+  <div><h3 class="font-semibold text-navy mb-3">Ocupação · últimos 14 dias</h3><div class="bg-white rounded-2xl shadow-sm p-5"><div class="flex items-end gap-1.5 h-48">${OCC.map((o,i)=>`<div class="flex-1 flex flex-col items-center justify-end h-full group"><span class="text-[10px] text-slate-400 opacity-0 group-hover:opacity-100">${o}%</span><div class="w-full rounded-t ${i==13?'bg-gold':'bg-navy/80'}" style="height:${o}%"></div></div>`).join('')}</div><div class="flex justify-between text-[11px] text-slate-400 mt-2"><span>há 14 dias</span><span>hoje</span></div><p class="text-sm mt-4">Média: <b class="text-navy">${Math.round(OCC.reduce((a,b)=>a+b)/14)}%</b></p></div></div></div>`,
+ res:()=>`<div class="flex justify-between items-center mb-4"><p class="text-sm">${B.length} reservas registadas</p><button onclick="go('dash');closeAdmin();openBooking()" class="btn-gold rounded-lg px-4 py-2 text-sm flex items-center gap-1"><i data-lucide="plus" class="w-4 h-4"></i>Nova reserva</button></div>${table(['Código','Hóspede','Quarto','Check-in','Status'],B.map(b=>[b.id,b.name,b.room,fmt(b.date),pill(b.status)]))}`,
+ qts:()=>`<div class="flex flex-wrap gap-3 mb-4 text-sm">${['Livre','Ocupado','Limpeza'].map(s=>`<span>${pill(s)} <b>${rooms.filter(r=>r.s===s).length}</b></span>`).join('')}<span class="text-slate-400 ml-auto">Clique no estado para alterar</span></div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">${rooms.map((r,i)=>`<div class="bg-white rounded-2xl p-4 shadow-sm"><div class="flex justify-between items-center"><span class="text-2xl font-bold text-navy">${r.n}</span><button onclick="cycle(${i})">${pill(r.s)}</button></div><p class="text-sm mt-2">${r.t.name}</p><p class="text-xs text-slate-500">${kz(r.t.price)} / noite</p></div>`).join('')}</div>`,
+ cli:()=>table(['Cliente','Telemóvel','Reservas','Total gasto','Última estadia'],custs().map(c=>[c.n,c.p,c.c,kz(c.t),fmt(c.l)])),
+ fin:()=>{const rv=revenue(),ex=612000;return`<div class="grid sm:grid-cols-3 gap-4">${card('trending-up','Receitas do mês',kz(rv),'bg-emerald-100 text-emerald-700')}${card('trending-down','Despesas do mês',kz(ex),'bg-rose-100 text-rose-700')}${card('piggy-bank','Lucro líquido',kz(rv-ex),'bg-amber-100 text-amber-700')}</div>
+  <h3 class="font-semibold text-navy my-3">Últimos pagamentos</h3>${table(['Código','Hóspede','Valor','Estado'],B.slice(0,8).map(b=>[b.id,b.name,kz(b.amount),b.status==='Confirmada'?pill('Confirmada').replace('Confirmada','Pago'):pill('Pendente')]))}`}
+};
+function cycle(i){const o=['Livre','Ocupado','Limpeza'];rooms[i].s=o[(o.indexOf(rooms[i].s)+1)%3];go('qts');toast(`Quarto ${rooms[i].n}: ${rooms[i].s}`)}
+icons();
+</script>
+</body>
+</html>
